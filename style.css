@@ -1,0 +1,159 @@
+:root{
+    --text-color: #1e1e1e;
+    --bg-color: #e4e4e4;
+}
+
+@keyframes addNotes {
+    from {
+        scale: 0;
+        opacity: 0;
+    }to{
+        scale: 1;
+        opacity: 100%;
+    }
+}
+
+@keyframes removeNotes {
+    from {
+        scale: 1;
+        opacity: 100%;
+    }to{
+        scale: 0;
+        opacity: 0;
+    }
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    height: 100vh;
+    font-family: 'Roboto', sans-serif;
+    overflow: hidden;
+    columns: var(--text-color);
+    background-color: var(--text-color);
+}
+
+.wrapper {
+    min-height: 300px;
+    margin: 4rem 8rem;
+    border-radius: 8px;
+    background-color: var(--bg-color);
+    border: 1px solid var(--bg-color);
+    padding: 1rem;
+}
+.wrapper .row{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.wrapper .row button{
+    color: white;
+    cursor: pointer;
+    background-color: coral;
+    border: 0;
+    border-radius: 8px;
+    padding: .5rem 1rem;
+    transition: 200ms all ease-in-out;
+}
+
+.wrapper .row .delete{
+    background-color: transparent;
+    padding: 3px .5rem;
+    font-size: 12px;
+}
+
+.wrapper .row button:hover {
+    transition: 200ms all ease-in-out;
+    background-color: rgb(230, 115, 73);
+}
+
+.wrapper .notes{
+    display: grid;
+    max-width: 1200px;
+    margin: 0 auto;
+    max-height: 80vh;
+    overflow-y: auto;
+    margin-top: 1rem;
+    gap: .5rem;
+}
+
+.wrapper .notes:empty{
+    display: none;
+}
+
+.wrapper .notes .note{
+    border-radius: 16px;
+    color: var(--bg-color);
+    background-color: var(--text-color);
+    padding: 1rem;
+    max-width: 200px;
+    animation: addNotes .3s linear;
+}
+
+.wrapper .notes .note .title{
+    margin-left: 8px;
+    background-color: transparent;
+    border: 0;
+    color: white;
+    font-weight: bold;
+    transition: all .2s ease-in-out;
+}
+
+.wrapper .notes .note .title::placeholder{
+    color: #dddddd;
+    padding-left: 4px;
+}
+
+.wrapper .notes .note .title:focus{
+    outline: 0;
+    border-bottom: 1px solid coral;
+    transition: all .2s ease-in-out;
+}
+
+.wrapper .notes .note .title:focus::placeholder{
+    color: white;
+}
+
+
+.wrapper .notes .note .description{
+    color: var(--bg-color);
+    background-color: var(--text-color);
+    padding: 1rem .5rem;
+    border-radius: 8px;
+    border: 0;
+    resize: none;
+    margin-top: 1rem;
+    transition: background-color .2s linear;
+}
+
+.wrapper .notes .note .description:focus{
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    outline: 0;
+}
+
+
+/* mweb */
+@media screen and (max-width: 768px) {
+    .wrapper .notes{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* mobile */
+@media screen and (max-width: 425px) {
+    .wrapper .notes{
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+/* desktop */
+@media screen and (min-width: 769px) {
+    .wrapper .notes{
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
